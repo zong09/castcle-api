@@ -23,9 +23,17 @@
 
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { HashtagPayloadDto } from '../dtos/hashtags.dto';
 import { CastcleBase } from './base.schema';
 
-export type HashtagDocument = Hashtag & Document;
+export type HashtagDocument = Hashtag & IHashtag;
+
+interface IHashtag extends Document {
+  /**
+   * @returns {HashtagPayloadDto} return payload that need to use in controller (not yet implement with engagement)
+   */
+  toPagePayload(): HashtagPayloadDto;
+}
 
 @Schema({ timestamps: true })
 export class Hashtag extends CastcleBase {
@@ -40,3 +48,14 @@ export class Hashtag extends CastcleBase {
 }
 
 export const HashtagSchema = SchemaFactory.createForClass(Hashtag);
+
+HashtagSchema.methods.toPagePayload = function () {
+  return {
+    id: (this as HashtagDocument)._id,
+    slug: (this as HashtagDocument).tag,
+    name: (this as HashtagDocument).tag,
+    key: (this as HashtagDocument).tag,
+    created: (this as HashtagDocument).createdAt.toISOString(),
+    updated: (this as HashtagDocument).updatedAt.toISOString()
+  } as HashtagPayloadDto;
+};

@@ -20,24 +20,18 @@
  * Thailand 10160, or visit www.castcle.com if you need additional information
  * or have any questions.
  */
-import { Module, Global } from '@nestjs/common';
-import {
-  getModelToken,
-  MongooseModule,
-  MongooseModuleOptions
-} from '@nestjs/mongoose';
+import { Global, Module } from '@nestjs/common';
+import { getModelToken, MongooseModule } from '@nestjs/mongoose';
 import { env } from './environment';
-import { AuthenticationService } from './services/authentication.service';
-import { UserService } from './services/user.service';
-import { ContentService } from './services/content.service';
-import { AccountSchema, AccountSchemaFactory } from './schemas/account.schema';
-import {
-  CredentialSchema,
-  CredentialSchemaFactory
-} from './schemas/credential.schema';
+import { AccountSchemaFactory } from './schemas/account.schema';
 import { AccountActivationSchema } from './schemas/accountActivation.schema';
-import { UserSchema } from './schemas/user.schema';
 import { ContentSchema } from './schemas/content.schema';
+import { CredentialSchemaFactory } from './schemas/credential.schema';
+import { UserSchema } from './schemas/user.schema';
+import { AuthenticationService } from './services/authentication.service';
+import { ContentService } from './services/content.service';
+import { HashtagService } from './services/hashtag.service';
+import { UserService } from './services/user.service';
 
 export const MongooseForFeatures = MongooseModule.forFeature([
   { name: 'AccountActivation', schema: AccountActivationSchema },
@@ -62,9 +56,14 @@ export const MongooseAsyncFeatures = MongooseModule.forFeatureAsync([
     MongooseForFeatures
   ],
   controllers: [],
-  providers: [AuthenticationService, UserService, ContentService],
-  exports: [AuthenticationService, UserService, ContentService]
+  providers: [
+    AuthenticationService,
+    UserService,
+    ContentService,
+    HashtagService
+  ],
+  exports: [AuthenticationService, UserService, ContentService, HashtagService]
 })
 export class DatabaseModule {}
 
-export { AuthenticationService, UserService, ContentService };
+export { AuthenticationService, UserService, ContentService, HashtagService };
