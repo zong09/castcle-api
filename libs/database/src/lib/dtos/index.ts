@@ -1,3 +1,15 @@
+import {
+  BlogPayload,
+  ContentPayloadDto,
+  ContentResponse,
+  ContentsResponse,
+  ContentType,
+  DEFAULT_QUERY_OPTIONS,
+  QueryOption,
+  SaveContentDto,
+  ShortPayload
+} from './content.dto';
+import { HashtagPayloadDto, HashtagResponse } from './hashtags.dto';
 /*
  * Copyright (c) 2021, Castcle and/or its affiliates. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -20,24 +32,12 @@
  * Thailand 10160, or visit www.castcle.com if you need additional information
  * or have any questions.
  */
-
 import {
-  UserResponseDto,
-  UpdateUserDto,
   PageDto,
-  UpdatePageDto
+  UpdatePageDto,
+  UpdateUserDto,
+  UserResponseDto
 } from './user.dto';
-import {
-  ContentType,
-  ContentPayloadDto,
-  SaveContentDto,
-  ShortPayload,
-  BlogPayload,
-  ContentResponse,
-  ContentsResponse,
-  QueryOption,
-  DEFAULT_QUERY_OPTIONS
-} from './content.dto';
 
 export {
   UserResponseDto,
@@ -52,5 +52,7 @@ export {
   ContentResponse,
   ContentsResponse,
   QueryOption,
-  DEFAULT_QUERY_OPTIONS
+  DEFAULT_QUERY_OPTIONS,
+  HashtagResponse,
+  HashtagPayloadDto
 };

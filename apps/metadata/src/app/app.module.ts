@@ -21,16 +21,18 @@
  * or have any questions.
  */
 
+import { DatabaseModule } from '@castcle-api/database';
+import { UtilsInterceptorsModule } from '@castcle-api/utils/interceptors';
+import { UtilsPipesModule } from '@castcle-api/utils/pipes';
 import { Module } from '@nestjs/common';
-
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
+import { HashtagsController } from './controllers/hashtags/hashtags.controller';
 import { HealthyController } from './controllers/healthy/healthy.controller';
 
 @Module({
-  imports: [],
-  controllers: [AppController, HealthyController],
+  imports: [DatabaseModule, UtilsInterceptorsModule, UtilsPipesModule],
+  controllers: [AppController, HealthyController, HashtagsController],
   providers: [AppService]
 })
 export class AppModule {}
