@@ -27,6 +27,7 @@ import { AccountSchemaFactory } from './schemas/account.schema';
 import { AccountActivationSchema } from './schemas/accountActivation.schema';
 import { ContentSchema } from './schemas/content.schema';
 import { CredentialSchemaFactory } from './schemas/credential.schema';
+import { HashtagSchema } from './schemas/hashtag.schema';
 import { UserSchema } from './schemas/user.schema';
 import { AuthenticationService } from './services/authentication.service';
 import { ContentService } from './services/content.service';
@@ -36,7 +37,8 @@ import { UserService } from './services/user.service';
 export const MongooseForFeatures = MongooseModule.forFeature([
   { name: 'AccountActivation', schema: AccountActivationSchema },
   { name: 'User', schema: UserSchema },
-  { name: 'Content', schema: ContentSchema }
+  { name: 'Content', schema: ContentSchema },
+  { name: 'Hashtag', schema: HashtagSchema }
 ]);
 
 export const MongooseAsyncFeatures = MongooseModule.forFeatureAsync([

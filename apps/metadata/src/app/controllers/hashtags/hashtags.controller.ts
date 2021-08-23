@@ -45,6 +45,7 @@ export class HashtagsController {
       );
 
     const content = await this.hashtagService.getAll();
+    this.logger.log('Complete get all hashtag.');
     return {
       payload: content.map((x) => x.toPagePayload())
     } as HashtagResponse;
